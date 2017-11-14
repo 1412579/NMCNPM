@@ -27,6 +27,18 @@ var Catalog = {
             });
         })
 		
+    },
+    getAllIndex: ()=>{
+        return new Promise((resolve,reject)=>{
+            pool.query(`select * from catalog where ishide=false order by orderb asc, id desc`, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve(result.rows);
+            });
+        })
+		
 	},
 	getById: (id)=>{
         return new Promise((resolve,reject)=>{

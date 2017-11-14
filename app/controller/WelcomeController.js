@@ -1,7 +1,9 @@
 //app/controller/WelcomeController.js
 var Articles = require('../model/articles.js');
+var Catalog = require('../model/catalog.js');
+
 var WelcomeController = {
-	index: function(req, res) {
+	index: (req, res) => {
 		// var objUser = {};
 		// objUser.id = 3;
 		// var userInfo = Articles.getArticleById(objUser)
@@ -14,10 +16,15 @@ var WelcomeController = {
 		// .catch(function(errors) {
 		// 	console.log(errors);
 		//   });;
+		Catalog.getAllIndex()
+		.then( result => {
+			res.render('user/index',{
+				message: req.flash('signupSuccess')[0],
+				catalog: result
+			});
+		})
+		.catch(err => console.log(err));
 		
-		res.render('user/index',{
-			message: req.flash('signupSuccess')[0] 
-		});
 		
 	},
 	about: function(req, res) {

@@ -31,6 +31,9 @@ module.exports = function(app, passport,pool) {
 	app.get('/detail',  WelcomeController.detail);
 	app.get('/about',  WelcomeController.about);
 	
+	
+
+	
 	app.get('/profile', WelcomeController.profile);
 
 	app.use("/admin",AdminController);
