@@ -2147,3 +2147,15 @@ h5.act a,h5.race a,h5.sport a,h5.arc a{
         left: auto;
     }
 }
+
+.avatar{
+	max-width: 100%;
+	height: 50%;
+	border-radius: 500px;
+}
+
+.media-heading{
+
+    font-size: 1.1em!important;
+
+}
