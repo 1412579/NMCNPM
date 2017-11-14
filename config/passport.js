@@ -104,7 +104,6 @@ module.exports = function(passport,pool) {
                         email: email,
                         fullname: req.body.fullname,
                         password: bcrypt.hashSync(password, null, null),  // use the generateHash function in our user model
-
                     };
                     console.log(newUser);
                     var insertQuery = `insert into users(email,password,fullname,role_id,active,created_at) values('${newUser.email }','${newUser.password}','${newUser.fullname}',1,true,'${timestamp}') RETURNING id`;
