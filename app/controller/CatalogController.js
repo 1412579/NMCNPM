@@ -60,7 +60,7 @@ router.get('/edit/:id', (req, res) => {
         res.render('admin/catalog/edit',{
             layout: 'main-admin',
             title: 'Sửa danh mục',
-            cata: result,
+            cata: result
         }); 
     })
     .catch(err=>console.log(err));
