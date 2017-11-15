@@ -26,23 +26,23 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">ID user</label>
 									<div class="col-sm-5">
-										<input type="text" class="form-control" value="{{user.id}}" disabled>
-										<input type="hidden" name="id" class="form-control" value="{{user.id}}">
+										<input type="text" class="form-control" value="{{user_.id}}" disabled>
+										<input type="hidden" name="id" class="form-control" value="{{user_.id}}">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Email</label>
 									
 									<div class="col-sm-5">
-										<input type="text" class="form-control" value="{{user.email}}" disabled>
-										<input type="hidden" name="email" class="form-control" value="{{user.email}}">
+										<input type="text" class="form-control" value="{{user_.email}}" disabled>
+										<input type="hidden" name="email" class="form-control" value="{{user_.email}}">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Họ và tên</label>
 									
 									<div class="col-sm-5">
-										<input type="text" name="fullname" class="form-control" value="{{user.fullname}}" required>
+										<input type="text" name="fullname" class="form-control" value="{{user_.fullname}}" required>
 									</div>
 								</div>
 								
@@ -50,18 +50,35 @@
 									<label class="col-sm-3 control-label">Số điện thoại</label>
 									
 									<div class="col-sm-5">
-										<input type="text" name="phone" class="form-control" value="{{user.phone}}" required>
+										<input type="text" name="phone" class="form-control" value="{{user_.phone}}" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Quyền</label>
 									
 									<div class="col-sm-5">
-										<select class="form-control" name="role" value="{{user.role}}">											
-											<option value="0">Người dùng</option>
-											<option value="1">Cộng tác viên</option>
-											<option value="2">Admin</option>
+										<select class="form-control" name="role" value="{{user_.role}}">											
+											<option value="1">Người dùng</option>
+											<option value="2">Cộng tác viên</option>
+											<option value="3">Admin</option>
 										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Khoá tài khoản</label>
+								
+									<div class="col-sm-5">
+							
+										<div class="bs-example">			
+											<div class="make-switch" data-on="primary" data-off="info">
+											{{#if user_.active}}
+												<input type="checkbox" name="checkbox">
+											{{else}}
+												<input type="checkbox" name="checkbox" checked>
+											{{/if}}
+											</div>
+										</div>
+										
 									</div>
 								</div>
 
