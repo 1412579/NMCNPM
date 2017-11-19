@@ -88,7 +88,19 @@ var Catalog = {
                     resolve( result);
             });
         });
-	}, 
+    },
+    getCateFromSlug: (slug) => {
+        return new Promise((resolve,reject)=>{
+            var query = `select category.id from catalog,category where catalog.slug= '${slug}' and category.catalog_id = catalog.id`;
+            pool.query(query, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve(result.rows);
+            });
+        });
+    }
 }
 
 module.exports = Catalog;

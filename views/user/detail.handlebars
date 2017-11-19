@@ -1,88 +1,92 @@
-
-
-
 <div class="container">
-				<div class="single">
-						{{> breadcrum-user}}
-					
-					<div class="blog-to">		
-					
-						<img class="img-responsive sin-on" src="/assets/dist/user/images/sin1.jpg" alt="" />
-							<div class="blog-top">
+	<div class="single">
 
-								<h3 class="fast" href="#">Tiêu đề của bài viết </h3>
-								<p>Đăng bởi: <a href="#">Admin</a> |  <a href="#">General</a> | <a href="#">10 bình luận</a></p> 
-								<p class="sed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500
-									 when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap.
-									 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500
-									 when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap.</p> 
-									 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus a convallis dictum. Phasellus sodales varius diam, non sagittis lectus. Morbi id magna ultricies ipsum condimentum scelerisque vel quis felis. Donec et purus nec leo interdum sodales nec sit amet magna.</p>
-								<div class="col-md-6 md-in">
-						<ul class="grid-part">
-							<li><a href="#"><i class="sign"> </i>Sed ut perspiciatis unde omnis</a></li>
-							<li><a href="#"><i class="sign"> </i>Lorem ipsum dolor sit amet,  </a></li>
-							<li><a href="#"><i class="sign"> </i>Sed ut perspiciatis unde omnis</a></li>
-							<li><a href="#"><i class="sign"> </i>Lorem ipsum dolor sit amet,  </a></li>
-							<li><a href="#"><i class="sign"> </i>Sed ut perspiciatis unde omnis</a></li>
-						</ul>
-						</div>
-						<div class="col-md-6 md-in">
-						<ul class="grid-part">
-							<li><a href="#"><i class="sign"> </i>Sed ut perspiciatis unde omnis</a></li>
-							<li><a href="#"><i class="sign"> </i>Lorem ipsum dolor sit amet,  </a></li>
-							<li><a href="#"><i class="sign"> </i>Sed ut perspiciatis unde omnis</a></li>
-							<li><a href="#"><i class="sign"> </i>Lorem ipsum dolor sit amet,  </a></li>
-							<li><a href="#"><i class="sign"> </i>Sed ut perspiciatis unde omnis</a></li>
-						</ul>
-						</div>
-						<div class="clearfix"> </div>
-							</div>
-							<div class="clearfix"> </div>
+		<div class="blog-to">
+
+
+			<div class="blog-top">
+				<h3 class="fast" href="#">{{article.title}}</h3>
+				<p>Đăng bởi:
+					<a href="#">{{article.user_name}}</a> |
+					<a href="#">{{article.cate_name}}</a> |
+				</p>
+				<p class="sed">
+					{{{article.content}}}
+
+				</p>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+			<div class="allbar">
+				<ul>
+					<li>
+						<a href="javascript:" id="viewcount" class="btn btn-success">
+							<span class="glyphicon glyphicon-thumbs-up"></span> 100</a>
+					</li>
+					<li>
+						<a href="javascript:" class="btn btn-default">
+							<span class="glyphicon glyphicon-eye-open"></span> {{article.view}}</a>
+					</li>
+				</ul>
+			</div>
+			<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9&appId=1093847504053808";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+			<div class="fb-like" data-href="https://techgame.herokuapp.com//tin-game/{{id}}-{{slug}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" id="{{article.id}}" data-href="https://techgame.herokuapp.com//tin-game/{{id}}-{{slug}}" data-width="1200" data-numposts="5"></div>
+			<div class="single-middle">
+				
+
+						
 					</div>
-		<div class="allbar">
-						<ul>
-							<li><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> 100</a></li>
-							<li><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> 1000</a></li>
-							<li><a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-export"></span> Chia sẻ</a></li>
-							<li><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Báo cáo bài viết</a></li>
-						</ul>
-					</div>
-		<div class="single-middle">
-			
-			<h3>3 bình luận</h3>
+				</div>
 				<div class="media">
-				  <div class="media-left">
-					<a href="#">
-					  <img class="media-object" src="/assets/dist/user/images/co.png" alt="">
-					</a>
-				  </div>
-				  <div class="media-body">
-					<h4 class="media-heading"><a href="#">User 1</a></h4>
+					<div class="media-left">
+						<a href="#">
+							<img class="media-object" src="/assets/dist/user/images/co.png" alt="">
+						</a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">
+							<a href="#">User 1</a>
+						</h4>
 						<p>20/10/2017</p>
 						<p>Bài này hay quá, cám ơn Admin.</p>
-				  </div>
+					</div>
 				</div>
 				<div class="media">
-				  <div class="media-left">
-					<a href="#">
-					  <img class="media-object" src="/assets/dist/user/images/co.png" alt="">
-					</a>
-				  </div>
-				  <div class="media-body">
-					<h4 class="media-heading"><a href="#">User</a></h4>
-					<p>20/10/2017</p>
+					<div class="media-left">
+						<a href="#">
+							<img class="media-object" src="/assets/dist/user/images/co.png" alt="">
+						</a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">
+							<a href="#">User</a>
+						</h4>
+						<p>20/10/2017</p>
 						<p>Cám ơn bạn đã chia sẻ kinh nghiệm của mình, vote.</p>
-				  </div>
+					</div>
 				</div>
-			
-		</div>
-		<!---->
-		<div class="single-bottom">
-			<h3>Bình luận</h3>
-				<form>
-						<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
-							<input type="submit" value="Gửi bình luận" >
-				</form>
+
 			</div>
+			<!---->
+			<div class="single-bottom">
+			{{#if user}}
+			
+				<h3>Bình luận</h3>
+				<form>
+					<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+					<input type="submit" value="Gửi bình luận">
+				</form>
+			{{else}}
+					<a href="/login"><h3>Đăng nhập ngay để bình luận</h3></a>
+			{{/if}}
+			</div>			
 		</div>
-</div>
+	</div>

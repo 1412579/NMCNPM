@@ -4,7 +4,7 @@ const pool = require('../model/pg');
 var Articles = {
 	getById: function(article) {
     return new Promise(function(resolve, reject) {
-      var sql = `select * from articles where id=${article}`;
+      var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.id=${article}`;
       pool.query(sql, function(errors, result) {
         if(errors) {
             reject(errors);
@@ -144,16 +144,151 @@ var Articles = {
     },
     get10news: ()=>{
         return new Promise(function(resolve, reject) {
-            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false order by updated_at desc  LIMIT 6 `;
-                pool.query(sql, function(errors, result) {
-                    if(errors) {
-                        reject(errors);
-                    } else {
-                        //console.log(result);
-                        resolve(result.rows);
-                    }
-                })
-            });
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false order by articles.updated_at desc  LIMIT 6 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        });
+    },
+    updateView: (id) =>{
+        return new Promise(function(resolve, reject) {
+            var sql = `update articles set view = view + 1 where id = ${id}`;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        });
+    },
+    get4hot: () =>{
+        return new Promise(function(resolve, reject) {
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false order by articles.updated_at desc, articles.view desc  LIMIT 4 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        });
+    },
+    count: () => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select count(*) as a_count from articles`;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows[0].a_count);
+                }
+            })
+        })
+    },
+    loadmore: (pageNow) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false order by articles.updated_at desc OFFSET ${pageNow * 6} LIMIT 6 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        })
+    },
+    getByCateSlug: (slug) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false and category.slug = '${slug}' order by articles.updated_at desc limit 6 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        })
+
+    },
+    getByCateSlugLoadMore: (slug,pageNow) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category where articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false and category.slug = '${slug}' order by articles.updated_at desc OFFSET ${pageNow * 6} LIMIT 6 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        })
+
+    },
+    countByCate: (slug) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select count(*) as a_count from articles,category where articles.category_id = category.id and category.slug = '${slug}'`;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows[0].a_count);
+                }
+            })
+        })
+    },
+    getByCatalogSlug: (slug) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category,catalog
+            where  articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false and category.catalog_id = catalog.id and catalog.slug = '${slug}' order by articles.created_at desc LIMIT 6 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        })
+    },
+    getByCatalogSlugLoadMore: (slug,pageNow) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select articles.*, users.fullname as user_name, category.name as cate_name from articles, users, category,catalog
+            where  articles.user_id = users.id and articles.category_id = category.id and articles.ishide = false and category.catalog_id = catalog.id and catalog.slug = '${slug}' order by articles.created_at desc OFFSET ${pageNow * 6} LIMIT 6 `;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows);
+                }
+            })
+        })
+    },
+    countByCata: (slug) => {
+        return new Promise(function(resolve, reject) {
+            var sql = `select count(*) as a_count from articles, category,catalog
+            where  articles.category_id = category.id and articles.ishide = false and category.catalog_id = catalog.id and catalog.slug = '${slug}'`;
+            pool.query(sql, function(errors, result) {
+                if(errors) {
+                    reject(errors);
+                } else {
+                    //console.log(result);
+                    resolve(result.rows[0].a_count);
+                }
+            })
+        })
     }
 }
 

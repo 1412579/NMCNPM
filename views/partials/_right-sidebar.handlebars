@@ -40,122 +40,32 @@
 			  <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav2" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Tin nóng+</a></li>
-                    <li role="presentation" ><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá+</a></li>
                     </ul>
                <!-- Tab panes -->
               <div class="tab-content">
 						<div role="tabpanel" class="tab-pane active re-pad2" id="home">
 
-
+							{{#each fourhot}}
 							<div class="game1">
 								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
+									<a href="/tin-game/{{id}}-{{slug}}"><img src="/upload/thumbnail/{{thumbnail}}" alt="{{title}}" class="img-responsive"></a>
 								</div>
 								<div class="col-md-9 tab-pic-info">
-								<h4><a href="#">Tin nóng</a></h4>
-								<p>Lorem Ipsum is simply dummy text of the printing industry.</p>
+								<h4><a href="/tin-game/{{id}}-{{slug}}">{{title}}</a></h4>
+								<p>{{{summary}}}</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
-							<div class="game1">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-pic-info">
-								<h4><a href="#">Tin nóng</a></h4>
-								<p>Lorem Ipsum is simply dummy text of the printing industry.</p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="game1">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-pic-info">
-								<h4><a href="#">Tin nóng</a></h4>
-								<p>Lorem Ipsum is simply dummy text of the printing industry.</p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="game1">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-pic-info">
-								<h4><a href="#">Tin nóng</a></h4>
-								<p>Lorem Ipsum is simply dummy text of the printing industry.</p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane re-pad2" id="profile">
-							
-							<div class="game-post">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-post-info">
-								<h4><a href="#">Đánh giá Game</a></h4>
-								<p>Reviewer: <a href="#"> Admin</a> 18:00 18/10/2017 &nbsp; <a href="#">Bình luận (10)</a></p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="game-post">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-post-info">
-								<h4><a href="#">Đánh giá Game</a></h4>
-								<p>Reviewer: <a href="#"> Admin</a> 18:00 18/10/2017 &nbsp; <a href="#">Bình luận (10)</a></p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="game-post">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-post-info">
-								<h4><a href="#">Đánh giá Game</a></h4>
-								<p>Reviewer: <a href="#"> Admin</a> 18:00 18/10/2017 &nbsp; <a href="#">Bình luận (10)</a></p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="game-post">
-								<div class="col-md-3 tab-pic">
-									<a href="#"><img src="http://via.placeholder.com/91x78" alt="/" class="img-responsive"></a>
-								</div>
-								<div class="col-md-9 tab-post-info">
-								<h4><a href="#">Đánh giá Game</a></h4>
-								<p>Reviewer: <a href="#"> Admin</a> 18:00 18/10/2017 &nbsp; <a href="#">Bình luận (10)</a></p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>                   
+							{{/each}}
+						</div>                 
 			 </div>
 			 <!---->
 			 <div class="category blog-ctgry">
-					<h4>Game đang hot</h4>
-					<div class="list-group">
-						<a href="#" class="list-group-item">Game</a>
-						<a href="#" class="list-group-item">Game</a>
-						<a href="#" class="list-group-item">Game</a>
-						<a href="#" class="list-group-item">Game</a>
-						<a href="#" class="list-group-item">Game</a>
-						<a href="#" class="list-group-item">Game</a>
-					</div>
+					<h4>Quảng cáo</h4>
+					<img src="http://via.placeholder.com/365x600" alt="">
 			 </div>	
 			 <div class="category blog-ctgry">
-					<h4>Công nghệ mới</h4>
-					<div class="list-group">
-						<a href="#" class="list-group-item">Tech</a>
-						<a href="#" class="list-group-item">Tech</a>
-						<a href="#" class="list-group-item">Tech</a>
-						<a href="#" class="list-group-item">Tech</a>
-						<a href="#" class="list-group-item">Tech</a>
-						<a href="#" class="list-group-item">Tech</a>
-					</div>
+					<h4>Quảng cáo</h4>
+					<img src="http://via.placeholder.com/365x600" alt="">
 			 </div>	
-			 <div class="row">
-				 <img src="http://via.placeholder.com/365x600" alt="">
-			 </div>
 		  </div>

@@ -1,0 +1,39 @@
+
+<div class="content">
+	<div class="container">
+		<div class="col-md-8 content-left">
+			<div class="newsupdate">
+				<h2 class="top">
+					<a href="javascript:">MỚI CẬP NHẬT</a>
+				</h2>
+				<ul id="append-load-more">
+					{{#each tennewss}}
+					<li class="top">
+						<a href="/{{slug}}-{{id}}" title="{{title}}">
+						<img alt="" src="/upload/thumbnail/{{thumbnail}}" width="310px" height="200px">
+						</a>
+
+						<h3><a title="{{title}}" href="/tin-game/{{id}}-{{slug}}">{{title}}</a></h3>
+						<p>{{{summary}}}</p>
+						<p class="time">
+						<a href="javascript:void(0);" class="author">{{user_name}}</a>
+						- 
+						<a href="#" class="categame">{{cate_name}}</a>
+							- {{created_at}}
+						</p>
+					</li>
+					{{/each}}
+				</ul>	
+				<div class="clearfix"></div>
+			</div>
+			<div class="paging">
+				<input type="hidden" id="page" value="{{a_count}}">
+				<input type="hidden" id="slug" value="{{slug}}">
+				<a href="javascript:" id="load-more-cate" class="load-more">Xem thêm</a>
+			</div>
+			</div>
+		{{> _right-sidebar }}
+		<div class="clearfix"></div>
+		
+	</div>
+</div>

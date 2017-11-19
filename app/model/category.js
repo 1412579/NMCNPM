@@ -27,6 +27,18 @@ var Category = {
             });
         })
 		
+    },
+    getAllIndex: ()=>{
+        return new Promise((resolve,reject)=>{
+            pool.query(`select category.*,catalog.slug as cataslug from category,catalog where category.catalog_id = catalog.id and category.ishide = false order by orderb asc, id desc`, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve(result.rows);
+            });
+        })
+		
 	},
 	getById: (id)=>{
         return new Promise((resolve,reject)=>{

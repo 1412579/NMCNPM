@@ -13,10 +13,14 @@ var mw = require('../config/middleware');
 module.exports = function (app, passport, pool) {
 	//Home
 	app.get('/', WelcomeController.index);
-	app.get('/detail', WelcomeController.detail);
+	app.get('/tin-game/:id-:slug', WelcomeController.detail);
+	app.get('/danh-muc/:catalog_slug/:category_slug', WelcomeController.category);
+	app.get('/danh-muc/:catalog_slug', WelcomeController.catalog);
 	app.get('/about', WelcomeController.about);
-
-	app.get('/profile', WelcomeController.profile);
+	app.get('/loadmore', WelcomeController.loadmore);
+	app.get('/loadmore-cate', WelcomeController.loadmorecate);
+	app.get('/loadmore-cata', WelcomeController.loadmorecata);
+	
 
 	app.use("/admin", AdminController);
 	app.use("/admin/article", mw.isLoggedInAdmin, mw.isAdminAccess, ArticleController);
