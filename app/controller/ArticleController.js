@@ -20,13 +20,16 @@ var storage = multer.diskStorage({
 var upload = multer({ storage : storage }).single('thumbnail');
 
 router.get('/add', function(req, res) {
+    //console.log(1)
     Category.getAll()
     .then(result=>{
+        //console.log(2)
         res.render('admin/article/add',{
             layout: 'main-admin',
             cate: result,
         });
     })
+    .catch(err => console.log(err))
     
 });
 
@@ -52,7 +55,7 @@ router.post('/add', function(req, res) {
             created_at: getTimeNow,
             updated_at: getTimeNow
         };
-        if(req.body.thumbnail && req.file.filename !== undefined){
+        if(req.file.filename){
             articleInfo.thumbnail = req.file.filename;
         }
         else{
@@ -244,13 +247,15 @@ router.get('/edit/:id', function(req, res) {
 router.post('/delete',(req,res) => {
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
         Article.getById(req.body.id)
-        .then(result => {
+        .then(u => {
+            return User.getById(u.user_id);
+        })
+        .then(u => {
             if(req.user.role_id != u.role_id && req.user.role_id < u.role_id)
                 return res.end()
             else if(req.user.role_id < u.role_id)
                 return res.end()
             else return Article.delete(req.body.id)
-            
         })
         .then( result => {
             console.log('Xoá bài viết thành công!');
@@ -268,9 +273,9 @@ function checkRoleEdit(req,res,user_id){
     .then(u => {
         console.log('user_c role_id: ' + req.user.id + ' article author: ' + u.role_id);
         if(req.user.role_id != u.role_id && req.user.role_id < u.role_id)
-            return res.end("401 - Unauthorized: Access is denied due to invalid credentials");
+            return res.send("401 - Unauthorized: Access is denied due to invalid credentials");
         else if(req.user.role_id < u.role_id)
-            return res.end("401 - Unauthorized: Access is denied due to invalid credentials");
+            return res.send("401 - Unauthorized: Access is denied due to invalid credentials");
     })
     .catch(err => console.log(err));
     

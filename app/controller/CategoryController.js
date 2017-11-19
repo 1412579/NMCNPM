@@ -11,7 +11,7 @@ var slug = require('slug');
 router.get('/add', (req, res) => {
     Catalog.getAll()
     .then(result => {
-        res.render('admin/Category/add',{
+        res.render('admin/category/add',{
             layout: 'main-admin',
             title: 'Thêm loại tin mới',
             catalog: result

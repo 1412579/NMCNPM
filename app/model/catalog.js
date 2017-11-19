@@ -18,7 +18,7 @@ var Catalog = {
 	},
 	getAll: ()=>{
         return new Promise((resolve,reject)=>{
-            pool.query(`select * from catalog order by orderb asc, id desc`, function(err, result){
+            pool.query(`select * from catalog`, function(err, result){
                 if (err){
                     reject(err);
                 }

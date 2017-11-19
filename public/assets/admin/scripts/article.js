@@ -1,6 +1,6 @@
 
 	$(document).ready(function () {
-		$('.deletearticle').click(function () {
+		$('.deletearticle').on('click',function () {
 			if (window.confirm("Bạn chắc chắn muốn xoá?")) {
 				var id = $(this).parent().parent().find('input#id').val();
 				var url = '/admin/article/delete';

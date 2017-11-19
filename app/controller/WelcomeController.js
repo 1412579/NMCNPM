@@ -1,26 +1,26 @@
 //app/controller/WelcomeController.js
-var Articles = require('../model/article.js');
+var Article = require('../model/article.js');
 var Catalog = require('../model/catalog.js');
 
 var WelcomeController = {
 	index: (req, res) => {
-		// var objUser = {};
-		// objUser.id = 3;
-		// var userInfo = Articles.getArticleById(objUser)
-		// .then(function(userIn){
-		// 	//console.log(userIn);
-		// 	res.render('user/index',{
-		// 		userInfo: userIn
-		// 	});
-		// })
-		// .catch(function(errors) {
-		// 	console.log(errors);
-		//   });;
+		let g_catalog;
+		let g_4highlight;
 		Catalog.getAllIndex()
 		.then( result => {
+			g_catalog = result;
+			return Article.get4highlight();
+		})
+		.then(result => {
+			g_4highlight = result;
+			return Article.get10news();
+		})
+		.then(result => {
 			res.render('user/index',{
 				message: req.flash('signupSuccess')[0],
-				catalog: result
+				catalog: g_catalog,
+				highlight: g_4highlight,
+				tennewss: result
 			});
 		})
 		.catch(err => console.log(err));

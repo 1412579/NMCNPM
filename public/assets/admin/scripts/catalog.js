@@ -1,6 +1,6 @@
 
 		$(document).ready(function(){
-			$('.deleteCate').click(function(){
+			$('.deleteCate').on('click',function(){
 				if(window.confirm("Bạn chắc chắn muốn xoá?")){
 					var id =$(this).parent().parent().find('input#id').val();
 					var url ='/admin/catalog/delete';

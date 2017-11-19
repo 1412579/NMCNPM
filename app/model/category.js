@@ -18,15 +18,13 @@ var Category = {
 	},
 	getAll: ()=>{
         return new Promise((resolve,reject)=>{
-            return new Promise((resolve,reject)=>{
-                pool.query(`select category.*,catalog.name as cataname from category,catalog where category.catalog_id = catalog.id order by orderb asc, id desc`, function(err, result){
-                    if (err){
-                        reject(err);
-                    }
-                    else
-                        resolve(result.rows);
-                });
-            })
+            pool.query(`select category.*,catalog.name as cataname from category,catalog where category.catalog_id = catalog.id order by orderb asc, id desc`, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve(result.rows);
+            });
         })
 		
 	},

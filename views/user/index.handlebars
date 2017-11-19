@@ -3,23 +3,24 @@
 	<div class="container">
 		<div class="col-md-8 content-left">
 			<div class="wptopleft">
+
 				<div class="topleft" data-boxtype="homenewsposition">
-					<a href="#"><img src="http://via.placeholder.com/399x262"  width="399px" height="262px"></a>
-					<h2><a title="Tiêu đề bài viết nổi bật" href="#">{{userInfo.title}}</a></h2>
+					<a href="#"><img src="/upload/thumbnail/{{highlight.0.thumbnail}}"  width="399px" height="262px"></a>
+					<h2><a title="{{highlight.0.title}}" href="/{{highlight.0.slug}}-{{highlight.0.id}}">{{highlight.0.title}}</a></h2>
 				</div>
 				<div class="topleft2" data-boxtype="homenewsposition">
-					<a href="#"><img src="http://via.placeholder.com/399x163"  width="399px" height="163px"></a>
-					<h2><a title="Tiêu đề bài viết nổi bật" href="#">Tiêu đề bài viết nổi bật</a></h2>
+					<a href="#"><img src="/upload/thumbnail/{{highlight.1.thumbnail}}"  width="399px" height="163px"></a>
+					<h2><a title="{{highlight.1.title}}" href="/{{highlight.1.slug}}-{{highlight.1.id}}">{{highlight.1.title}}</a></h2>
 				</div>
 			</div>
 			<div class="wptopright">
 				<div class="topright" data-boxtype="homenewsposition">
-					<a href="#"><img src="http://via.placeholder.com/278x262"  width="278px" height="262px"></a>
-					<h2><a title="Tiêu đề bài viết nổi bật" href="#">Tiêu đề bài viết nổi bật</a></h2>
+					<a href="#"><img src="/upload/thumbnail/{{highlight.2.thumbnail}}"  width="278px" height="262px"></a>
+					<h2><a title="{{highlight.2.title}}" href="/{{highlight.2.slug}}-{{highlight.2.id}}">{{highlight.2.title}}</a></h2>
 				</div>
 				<div class="topright2" data-boxtype="homenewsposition">
-					<a href="#"><img src="http://via.placeholder.com/278x163"  width="278px" height="163px"></a>
-					<h2><a title="Tiêu đề bài viết nổi bật" href="#">Tiêu đề bài viết nổi bật</a></h2>
+					<a href="#"><img src="/upload/thumbnail/{{highlight.3.thumbnail}}"  width="278px" height="163px"></a>
+					<h2><a title="{{highlight.3.title}}" href="/{{highlight.3.slug}}-{{highlight.3.id}}">{{highlight.3.title}}</a></h2>
 				</div>
 			</div>
 			<div class="newsupdate">
@@ -27,51 +28,22 @@
 					<a href="javascript:">MỚI CẬP NHẬT</a>
 				</h2>
 				<ul>
+					{{#each tennewss}}
 					<li class="top">
-						<a href="#" title="">
-						<img alt="" src="http://via.placeholder.com/310x200" width="310px" height="200px">
-
+						<a href="/{{slug}}-{{id}}" title="{{title}}">
+						<img alt="" src="/upload/thumbnail/{{thumbnail}}" width="310px" height="200px">
 						</a>
 
-						<h3><a title="Tiêu đề bài viết " href="#">Tiêu đề bài viết</a></h3>
-						<p>Nội dung ngắn để hiển thị!</p>
+						<h3><a title="{{title}}" href="/{{slug}}-{{id}}">{{title}}</a></h3>
+						<p>{{{summary}}}</p>
 						<p class="time">
-						<a href="javascript:void(0);" class="author">Tác giả</a>
+						<a href="javascript:void(0);" class="author">{{user_name}}</a>
 						- 
-						<a href="#" class="categame">Danh mục</a>
-						16/10/2017 16:20
+						<a href="#" class="categame">{{cate_name}}</a>
+							- {{created_at}}
 						</p>
 					</li>
-					<li class="top">
-						<a href="#" title="">
-						<img alt="" src="http://via.placeholder.com/310x200" width="310px" height="200px">
-
-						</a>
-
-						<h3><a title="Tiêu đề bài viết " href="#">Tiêu đề bài viết</a></h3>
-						<p>Nội dung ngắn để hiển thị!</p>
-						<p class="time">
-						<a href="javascript:void(0);" class="author">Tác giả</a>
-						- 
-						<a href="#" class="categame">Danh mục</a>
-						16/10/2017 16:20
-						</p>
-					</li>
-					<li class="top">
-						<a href="#" title="">
-						<img alt="" src="http://via.placeholder.com/310x200" width="310px" height="200px">
-
-						</a>
-
-						<h3><a title="Tiêu đề bài viết " href="#">Tiêu đề bài viết</a></h3>
-						<p>Nội dung ngắn để hiển thị!</p>
-						<p class="time">
-						<a href="javascript:void(0);" class="author">Tác giả</a>
-						- 
-						<a href="#" class="categame">Danh mục</a>
-						16/10/2017 16:20
-						</p>
-					</li>
+					{{/each}}
 				</ul>	
 				<div class="clearfix"></div>
 			</div>
