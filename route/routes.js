@@ -25,6 +25,15 @@ module.exports = function (app, passport, pool) {
 	app.use("/admin/user", mw.isSysAndAdminAccess,  mw.isLoggedInAdmin, mw.isAdminAccess, UserController);
 
 
+	//Home
+	app.get('/',  WelcomeController.index);
+	app.get('/detail',  WelcomeController.detail);
+	app.get('/about',  WelcomeController.about);
+	
+	
+
+	
+	app.get('/profile', WelcomeController.profile);
 
 	//Login area
 
