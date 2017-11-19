@@ -6,6 +6,7 @@ var router = express.Router();
 var Catalog = require('../model/catalog.js');
 var moment = require('moment');
 var slug = require('slug');
+
 router.get('/add', (req, res) => {
     res.render('admin/catalog/add',{
         layout: 'main-admin',
@@ -88,6 +89,32 @@ router.post('/edit/:id', (req,res)=>{
     .catch(err => console.log(err));
 })
 
+router.post('/update-visible',(req,res) => {
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        Catalog.visible(req.body)
+        .then( result => {
+            console.log('Update Ajax Ẩn/Hiện thành công!');
+            res.end('Update Ajax Ẩn/Hiện thành công!');
+        })
+        .catch(err => {
+            console.log(err);
+            return res.end();
+        });
+    }
+})
+
+router.post('/delete',(req,res) => {
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        Catalog.delete(req.body.id)
+        .then( result => {
+            console.log('Xoá danh mục thành công!');
+            res.end('Xoá danh mục thành công!');
+        })
+        .catch(err => {
+            console.log(err);
+            return res.end();
+        });
+    }
+})
+
 module.exports = router;
-
-

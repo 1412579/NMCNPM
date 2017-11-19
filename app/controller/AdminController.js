@@ -6,14 +6,14 @@ var mw = require('../../config/middleware');
 var LoginController = require('./LoginController');
 
 
-router.get('/dashboard', function(req, res) {
+router.get('/dashboard', mw.isLoggedInAdmin, mw.isAdminAccess,  function(req, res) {
     res.render('admin/dashboard',{
         layout: 'main-admin',
     });
 });
 
-router.get('/',mw.Logged, mw.isAdminAccess, LoginController.formLoginAdmin);
+router.get('/',mw.LoggedAdmin, mw.isAdminAccess, LoginController.formLoginAdmin);
 
-router.post('/',mw.Logged, mw.isAdminAccess,LoginController.adminlogin);
+router.post('/',mw.LoggedAdmin, mw.isAdminAccess,LoginController.adminlogin);
 
 module.exports = router;

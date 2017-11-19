@@ -53,24 +53,29 @@ var Category = {
         });
 	},
 	visible: function(cateInfo,callback){
-		var query = `update category set hide = ${cateInfo.hide} where id = ${cateInfo.id}`;
-		pool.query(query, function(err, result){
-			if (err){
-				callback(err, null);
-			}
-			else
-				callback(null, null);
-		});
+		return new Promise((resolve,reject)=>{
+            console.log(cateInfo);
+            var query = `update category set ishide = ${cateInfo.hide} where id = ${cateInfo.id}`;
+            pool.query(query, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve( result.rows);
+            });
+        });
 	},
-	delete: function(id,callback){
-		var query = `delete from category where id= ${id}`;
-		pool.query(query, function(err, result){
-			if (err){
-				callback(err, null);
-			}
-			else
-				callback(null, null);
-		});
+	delete: function(id){
+        return new Promise((resolve,reject)=>{
+            var query = `delete from category where id= ${id}`;
+            pool.query(query, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                resolve( result);
+            });
+        });
 	}, 
 }
 

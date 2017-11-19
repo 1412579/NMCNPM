@@ -1,662 +1,165 @@
+<div class="main-content">
 
-	<div class="main-content">
-				
-		{{>header-admin}}
-		
-		<hr />
-		{{>breadcrum}}
-		<h2>{{title}}</h2>
-		{{#if message}}
-		    <div class="alert alert-success">{{message}}</div>
-		{{/if}}
-		<div class="row">
-			<div class="col-md-12">
+	{{>header-admin}}
+
+	<hr /> {{>breadcrum}}
+	<h2>{{title}}</h2>
+	{{#if message}}
+	<div class="alert alert-success">{{message}}</div>
+	{{/if}}
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="panel panel-primary" data-collapsed="0">
+
+				<div class="panel-heading">
+					<div class="panel-title">
+						{{title}}
+					</div>
+
+				</div>
+
+				<script type="text/javascript">
+					jQuery(document).ready(function ($) {
+						var $table1 = jQuery('#table-1');
+
+						// Initialize DataTable
+						$table1.DataTable({
+							"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+							"bStateSave": true
+						});
+
+					});
+				</script>
+
+				<div class="panel-body">
+					<table class="table table-bordered datatable" id="table-1">
+						<thead>
+							<tr>
+								<th data-hide="phone">ID</th>
+								<th>Thumbnail</th>
+								<th>Tên bài viết</th>
+								<th data-hide="phone,tablet">Hiện</th>
+								<th data-hide="phone,tablet">Nổi bật</th>
+								<th>Người tạo</th>
+								<th>Danh mục</th>
 					
-					<div class="panel panel-primary" data-collapsed="0">
+								<th>Cập nhật gần đây</th>
+								<th>Thao tác</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each articles}}
+							<tr class="odd gradeX">
+								<td>{{id}}</td>
+								<td>
+									{{#if thumbnail}}
+										<img src="/upload/thumbnail/{{thumbnail}}" width="60" height="auto" alt="">
+									{{else}}
+										No image
+									{{/if}}
+								</td>
+								<td>{{title}}</td>
+								<td class="center">
+									<div class="make-switch" data-on="primary" data-off="info">
+										<input type="hidden" id="id" value="{{id}}">
+										{{#if ishide}}
+											<input type="checkbox" id="ishide" name="checkbox" checked>
+										{{else}}
+											<input type="checkbox" id="ishide" name="checkbox">
+										{{/if}}
+										
+									</div>
+								</td>
+								<td class="center">
+									<div class="make-switch" data-on="primary" data-off="info">
+										<input type="hidden" id="id" value="{{id}}">
+										{{#if ishide}}
+											<input type="checkbox" id="ishighlight" name="checkbox" checked>
+										{{else}}
+											<input type="checkbox" id="ishighlight" name="checkbox">
+										{{/if}}
+									</div>
+								</td>
+								<td>{{user_name}}</td>
+								<td>{{cate_name}}</td>
 					
-						<div class="panel-heading">
-							<div class="panel-title">
-								{{title}}
-							</div>
-							
-						</div>	
+								<td>{{updated_at}}</td>
+								<td class="center">
+									<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
+										<i class="entypo-pencil"></i>
+										Sửa
+									</a>
+									<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
+										<i class="entypo-cancel"></i>
+										Xoá
+									</a>
+								</td>
+							</tr>
+							{{/each}}
+						</tbody>
+						<tfoot>
+							<tr>
+								<th data-hide="phone">ID</th>
+								<th>Thumbnail</th>
+								<th>Tên sản phẩm</th>
+								<th data-hide="phone,tablet">Hiện</th>
+								<th data-hide="phone,tablet">Nổi bật</th>
+								<th>Người tạo</th>
+								<th>Danh mục</th>
+								<th>Cập nhật</th>
+								<th>Thao tác</th>
+							</tr>
+						</tfoot>
+					</table>
 
-						<script type="text/javascript">
-							jQuery( document ).ready( function( $ ) {
-								var $table1 = jQuery( '#table-1' );
-								
-								// Initialize DataTable
-								$table1.DataTable( {
-									"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-									"bStateSave": true
-								});
-								
-							} );
-							</script>
-						
-						<div class="panel-body">
-						<table class="table table-bordered datatable" id="table-1">
-							<thead>
-								<tr>
-									<th data-hide="phone">ID</th>
-									<th>Thumbnail</th>
-									<th>Tên bài viết</th>
-									<th data-hide="phone,tablet">Hiện</th>
-									<th data-hide="phone,tablet">Nổi bật</th>
-									<th>Người tạo</th>
-									<th>Danh mục</th>
-									<th>Thời gian tạo</th>
-									<th>Cập nhật gần đây</th>
-									<th>Thao tác</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="odd gradeX">
 
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>1213123</td>
-									<td>
-
-										
-										No image
-									</td>
-									<td>Tên bài viết</td>
-
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="hide" name="checkbox">
-											</div>
-	
-									</td>
-									<td class="center">
-	
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="hidden" id="id" value="">
-												<input type="checkbox" class="highlight" name="checkbox" checked>
-											</div>
-
-									</td>
-									<td>Tên người viết</td>
-									<td>Danh mục</td>
-									<td>Thời gian tạo</td>
-									<td>Thời gian cập nhật</td>
-									<td class="center">
-										<a href="/admin/article/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deletearticle">
-											<i class="entypo-cancel"></i>
-											Xoá
-										</a>
-									</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th data-hide="phone">ID</th>
-									<th>Thumbnail</th>
-									<th>Tên sản phẩm</th>
-									<th data-hide="phone,tablet">Hiện</th>
-									<th data-hide="phone,tablet">Nổi bật</th>
-									<th>Người tạo</th>
-									<th>Danh mục</th>
-									<th>Thời gian tạo</th>
-									<th>Cập nhật gần đây</th>
-									<th>Thao tác</th>
-								</tr>
-							</tfoot>
-						</table>	
-
-							
-						</div>
 				</div>
 			</div>
 		</div>
-		<br />
-		
-		<!-- Footer -->
-		{{>footer-admin}}
 	</div>
+	<br />
+
+	<!-- Footer -->
+	{{>footer-admin}}
+</div>
 
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.deletearticle').click(function(){
-				if(window.confirm("Bạn chắc chắn muốn xoá?")){
-					var id =$(this).parent().parent().find('input#id').val();
-					var url ='/admin/article/delete';
-					var target = $(this).parent().parent();
-					$.ajax({
-		                url: url,
-		                type: 'POST',
-		                cache: false,
-		                data:{id:id},
-		                success: function (data){
-		                    if(data){
-		                        target.remove();
-		                    }
-		                    else alert('Ajax không thành công!');
-		                 }
-		            });
-		         }
-		         else return false;
-			});
-			$('div.alert').delay(5000).slideUp();
-			$('input.hide').change(function() {
-				var id =$(this).parent().parent().find('input#id').val();
-				var hide;
-				var url ='/admin/article/update-visible';
- 				if(this.checked){
-				    hide=1;
-				}
-				else{
-				    hide=0;
-				}
-				$.ajax({
-	                url: url,
-	                type: 'POST',
-	                cache: false,
-	                data:{id:id,hide:hide},
-	                success: function (data){
-	                    if(data){
-	                        console.log(data);
-	                    }
-	                    else alert('Ajax không thành công!');
-	                 }
-	            });
-			});
-			$('input.highlight').change(function() {
-				var id =$(this).parent().parent().find('input#id').val();
-				var hide;
-				var url ='/admin/article/update-highlight';
- 				if(this.checked){
-				    hide=1;
-				}
-				else{
-				    hide=0;
-				}
-				$.ajax({
-	                url: url,
-	                type: 'POST',
-	                cache: false,
-	                data:{id:id,hide:hide},
-	                success: function (data){
-	                    if(data){
-	                        console.log(data);
-	                    }
-	                    else alert('Ajax không thành công!');
-	                 }
-	            });
-			});
-		});	
-	</script>
+ {{#section 'scripts'}}
+<!-- Imported styles on this page -->
+
+<!-- Bottom scripts (common) -->
+<script src="/assets/admin/js/gsap/TweenMax.min.js"></script>
+<script src="/assets/admin/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="/assets/admin/js/bootstrap.js"></script>
+<script src="/assets/admin/js/resizeable.js"></script>
+<script src="/assets/admin/js/neon-api.js"></script>
+<script src="/assets/admin/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 
 
-		
+
+<!-- Imported scripts on this page -->
+<script src="/assets/admin/scripts/article.js"></script>
 
 
+
+<script src="/assets/admin/js/datatables/datatables.js"></script>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="/assets/admin/js/neon-custom.js"></script>
+
+<!-- Imported scripts on this page -->
+<script src="/assets/admin/js/bootstrap-switch.min.js"></script>
+
+<!-- Demo Settings -->
+<script src="/assets/admin/js/neon-demo.js"></script>
+
+
+
+
+<script>
+	$(document).ready(function () {
+		//bootstrap WYSIHTML5 - text editor
+		$('#table-1').DataTable();
+	});
+</script> {{/section}}

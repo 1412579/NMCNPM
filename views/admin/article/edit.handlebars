@@ -1,145 +1,185 @@
+<div class="main-content">
 
-	<script>
-		$(document).ready(function() {
-			$("#addcate").validate({
-				rules: {
-					name: "required",
-					price: "required",
-				},
-				messages: {
-					name: "Vui lòng nhập tên sản phẩm..!",
-					price: "Vui lòng nhập giá..!",
-				}
-			});
-		});
-	</script>
+	{{>header-admin}}
 
-	<div class="main-content">
-				
-		{{>header-admin}}
-		
-		<hr />
-		{{>breadcrum}}
-		<h2>{{title}}</h2>
-		<form method="post" enctype="multipart/form-data" action="/admin/product/add" id="addcate" class="form-horizontal form-groups-bordered">
+	<hr /> {{>breadcrum}}
+	<h2>{{title}}</h2>
+	<form method="post" enctype="multipart/form-data" id="addcate" class="form-horizontal form-groups-bordered">
 		<div class="row">
 			<div class="col-md-8">
-					
-					<div class="panel panel-primary" data-collapsed="0">
-						<div class="panel-heading">
-							<div class="panel-title">
-								{{title}}
+
+				<div class="panel panel-primary" data-collapsed="0">
+					<div class="panel-heading">
+						<div class="panel-title">
+							{{title}}
+						</div>
+					</div>
+
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Danh mục</label>
+
+							<div class="col-sm-5">
+								<select class="form-control" name="cate">
+									{{{category}}}
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Ảnh thumbnail</label>
+							<div class="col-sm-5"> 
+								{{#if article.thumbnail}}
+								<img src="/upload/thumbnail/{{article.thumbnail}}" width="400" height="auto" alt="">
+								{{else}}
+								<input type="file" name="thumbnail" class="form-control"> 
+								{{/if}}
 							</div>
 						</div>
 						
-						<div class="panel-body">
-								<div class="form-group">
-									<label class="col-sm-3 control-label">ID bài viết</label>
-									
-									<div class="col-sm-5">
-									
-											<input type="text"class="form-control" disabled>
-									
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Danh mục</label>
-									
-									<div class="col-sm-5">
-										<select class="form-control" name="cate">
-										{{#each cate}}
-											<option value="{{id}}">{{name}}</option>
-										{{/each}}
-										</select>
-									</div>
-								</div>
+						{{#if article.thumbnail}}
+							<div class="form-group">
+							<label class="col-sm-3 control-label">Chọn ảnh thumbnail khác</label>
+							<div class="col-sm-5"> 
+								<input type="file" name="thumbnail" class="form-control"> 
+							</div>
+						</div>
+						{{/if}}
+						
+						
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Ảnh thumbnail</label>
-									<div style="margin-left:15px;" class="fileinput fileinput-new" data-provides="fileinput">
-										<div class="fileinput-new thumbnail" style="width: 310px; height: 200px;" data-trigger="fileinput">
-											<img src="http://placehold.it/310x200" alt="">
-										</div>
-										<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 310px; max-height: 200px"></div>
-										<div>
-											<span class="btn btn-white btn-file">
-												<span class="fileinput-new">Chọn ảnh</span>
-												<span class="fileinput-exists">Thay đổi</span>
-												<input type="file" name="imgdetail" accept="image/*">
-											</span>
-											<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Xoá</a>
-										</div>
-									</div>
-								</div>
+						
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Tên bài viết</label>
-									
-									<div class="col-sm-5">
-									
-											<input type="text" name="name" id="name" class="form-control" placeholder="Tên bài viết" required>
-									
-									</div>
-								</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Tên bài viết</label>
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Mô tả ngắn</label>
-									
-									<div class="col-sm-8">
-										<textarea name="description" class="textarea" placeholder="Thông tin mô tả ngắn hiển thị trên trang chủ" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-											
-									</div>
-								</div>
+							<div class="col-sm-8">
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Nội dung bài viết</label>
-									
-									<div class="col-sm-8">
-										<textarea name="description" class="textarea" placeholder="Nội dùng bài viêt" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-											
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Ẩn/hiện bài viết</label>
-								
-									<div class="col-sm-5">
-							
-										<div class="bs-example">			
-											<div class="make-switch" data-on="primary" data-off="info">
-												<input type="checkbox" name="checkbox" checked>
-											</div>
-										</div>
+								<input type="text" name="title" value="{{article.title}}" id="title" class="form-control" placeholder="Tên bài viết" required>
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Mô tả ngắn</label>
+
+							<div class="col-sm-8">
+								<textarea name="summary" id="summary" class="textarea" placeholder="Thông tin mô tả ngắn hiển thị trên trang chủ" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{article.summary}}</textarea>
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Nội dung bài viết</label>
+
+							<div class="col-sm-8">
+								<textarea name="content" id="content" class="textarea" placeholder="Nội dùng bài viêt" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{article.content}}</textarea>
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Ẩn/hiện bài viết</label>
+
+							<div class="col-sm-5">
+
+								<div class="bs-example">
+									<div class="make-switch" data-on="primary" data-off="info">
+										{{#if article.ishide}}
+										<input type="checkbox" name="ishide" checked>
+										{{else}}
+										<input type="checkbox" name="ishide">
+										{{/if}}
 										
 									</div>
 								</div>
 
-														
+							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Nổi bật bài viết (đưa lên khung nổi bật)</label>
+
+							<div class="col-sm-5">
+
+								<div class="bs-example">
+									<div class="make-switch" data-on="primary" data-off="info">
+										{{#if article.ishide}}
+										<input type="checkbox" name="ishighlight" checked>
+										{{else}}
+										<input type="checkbox" name="ishighlight">
+										{{/if}}
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+
 					</div>
+				</div>
 			</div>
 
-			<div class="form-group">	
+			<div class="form-group">
 				<div class="col-sm-8" style="text-align: center;">
-		
-					<div class="bs-example">	
+
+					<div class="bs-example">
 						<button type="submit" class="btn btn-green btn-icon">
-							Sửa bài viết<i class="entypo-check"></i>
+							Sửa bài viết
+							<i class="entypo-check"></i>
 						</button>
 					</div>
-					
-				</div>
-			</div>	
-			</form>
-		</div>
-		
-		<br />
 
-		<!-- Footer -->
-		{{>footer-admin}}
+				</div>
+			</div>
+	</form>
 	</div>
 
+	<br />
 
-		
+	<!-- Footer -->
+	{{>footer-admin}}
+</div>
 
 
+
+
+
+
+{{#section 'scripts'}}
+<!-- Imported styles on this page -->
+
+<!-- Bottom scripts (common) -->
+<script src="/assets/admin/js/gsap/TweenMax.min.js"></script>
+<script src="/assets/admin/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="/assets/admin/js/bootstrap.js"></script>
+<script src="/assets/admin/js/resizeable.js"></script>
+<script src="/assets/admin/js/neon-api.js"></script>
+<script src="/assets/admin/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="/assets/admin/js/neon-custom.js"></script>
+
+<!-- Imported scripts on this page -->
+<script src="/assets/admin/js/bootstrap-switch.min.js"></script>
+
+<!-- Demo Settings -->
+<script src="/assets/admin/js/neon-demo.js"></script>
+
+<script type="text/javascript" src="/assets/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/assets/ckeditor/adapters/jquery.js"></script>
+
+<script type="text/javascript">
+  CKEDITOR.replace('content', {
+    "extraPlugins" : 'imagebrowser',
+		"imageBrowser_listUrl" : "/files"
+  });
+  CKEDITOR.replace('summary', {
+    "extraPlugins" : 'imagebrowser',
+		"imageBrowser_listUrl" : "/files"
+  });
+
+</script> 
+
+
+{{/section}}

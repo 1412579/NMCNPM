@@ -8,6 +8,15 @@ var middleware = {
         // if they aren't redirect them to the home page
         res.redirect('/login');
     },
+    isLoggedInAdmin: function (req, res, next) {
+        
+        // if user is authenticated in the session, carry on
+        if (req.isAuthenticated())
+            return next();
+    
+        // if they aren't redirect them to the home page
+        res.redirect('/admin');
+    },
     Logged: function (req, res, next) {
         
         // if user isnt authenticated in the session, carry on
@@ -38,7 +47,29 @@ var middleware = {
                 
         }
         return next();
-    }
+    },
+    isSysAdminAccess: function (req, res, next) {
+        
+        // if user isnt authenticated in the session, carry on
+        if (req.isAuthenticated())
+        {
+            if (req.user.role_id != 4)
+                res.end("401 - Unauthorized: Access is denied due to invalid credentials");
+                
+        }
+        return next();
+    },
+    isSysAndAdminAccess: function (req, res, next) {
+        
+            // if user isnt authenticated in the session, carry on
+            if (req.isAuthenticated())
+            {
+                if (req.user.role_id == 1 || req.user.role_id == 2)
+                    res.end("401 - Unauthorized: Access is denied due to invalid credentials");
+                    
+            }
+            return next();
+        }
 };
 
 module.exports = middleware;

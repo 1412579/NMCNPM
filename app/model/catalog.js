@@ -52,25 +52,30 @@ var Catalog = {
             });
         });
 	},
-	visible: function(cateInfo,callback){
-		var query = `update catalog set hide = ${cateInfo.hide} where id = ${cateInfo.id}`;
-		pool.query(query, function(err, result){
-			if (err){
-				callback(err, null);
-			}
-			else
-				callback(null, null);
-		});
+	visible: function(cataInfo){
+        return new Promise((resolve,reject)=>{
+            console.log(cataInfo);
+            var query = `update catalog set ishide = ${cataInfo.hide} where id = ${cataInfo.id}`;
+            pool.query(query, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve( result.rows);
+            });
+        });
 	},
-	delete: function(id,callback){
-		var query = `delete from catalog where id= ${id}`;
-		pool.query(query, function(err, result){
-			if (err){
-				callback(err, null);
-			}
-			else
-				callback(null, null);
-		});
+	delete: function(id){
+        return new Promise((resolve,reject)=>{
+            var query = `delete from catalog where id= ${id}`;
+            pool.query(query, function(err, result){
+                if (err){
+                    reject(err);
+                }
+                else
+                    resolve( result);
+            });
+        });
 	}, 
 }
 

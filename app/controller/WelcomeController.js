@@ -1,5 +1,5 @@
 //app/controller/WelcomeController.js
-var Articles = require('../model/articles.js');
+var Articles = require('../model/article.js');
 var WelcomeController = {
 	index: function(req, res) {
 		// var objUser = {};

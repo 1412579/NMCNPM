@@ -10,67 +10,52 @@ var LoginController = require('../app/controller/LoginController');
 
 var mw = require('../config/middleware');
 
-var multer  =   require('multer');
-var storage =   multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, 'public/product');
-  },
-  filename: function (req, file, callback) {
-    callback(null, Date.now() +"-" + file.originalname);
-  }
-});
-
-var upload = multer({ storage : storage });
-
-module.exports = function(app, passport,pool) {
-
-	
-
+module.exports = function (app, passport, pool) {
 	//Home
-	app.get('/',  WelcomeController.index);
-	app.get('/detail',  WelcomeController.detail);
-	app.get('/about',  WelcomeController.about);
-	
+	app.get('/', WelcomeController.index);
+	app.get('/detail', WelcomeController.detail);
+	app.get('/about', WelcomeController.about);
+
 	app.get('/profile', WelcomeController.profile);
 
-	app.use("/admin",AdminController);
-	app.use("/admin/article",ArticleController);
-	app.use("/admin/catalog",CatalogController);
-	app.use("/admin/category",CategoryController);
-	app.use("/admin/user",UserController);
+	app.use("/admin", AdminController);
+	app.use("/admin/article", mw.isLoggedInAdmin, mw.isAdminAccess, ArticleController);
+	app.use("/admin/catalog", mw.isLoggedInAdmin, mw.isSysAdminAccess,mw.isAdminAccess, CatalogController);
+	app.use("/admin/category", mw.isLoggedInAdmin, mw.isSysAdminAccess,mw.isAdminAccess, CategoryController);
+	app.use("/admin/user", mw.isSysAndAdminAccess,  mw.isLoggedInAdmin, mw.isAdminAccess, UserController);
 
-	
+
 
 	//Login area
-	
-
-	app.get('/login', mw.Logged,LoginController.formLogin);
-	app.post('/login', mw.Logged,LoginController.login);
 
 
-	app.get('/signup', mw.Logged,LoginController.formSignup);
+	app.get('/login', mw.Logged, LoginController.formLogin);
+	app.post('/login', mw.Logged, LoginController.login);
+
+
+	app.get('/signup', mw.Logged, LoginController.formSignup);
 	app.post('/signup', mw.Logged, passport.authenticate('local-signup', {
-			successRedirect : '/login', // redirect to the secure profile section
-			failureRedirect : '/signup',
-			failureFlash : true, // allow flash messages
-			session: false
-		}));
+		successRedirect: '/login', // redirect to the secure profile section
+		failureRedirect: '/signup',
+		failureFlash: true, // allow flash messages
+		session: false
+	}));
 
 
 	app.get('/logout', LoginController.logout);
 
 
-	app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email','user_friends'] }));
+	app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_friends'] }));
 
-	
+
 	// handle the callback after facebook has authenticated the user
 	app.get('/auth/facebook/callback',
 		passport.authenticate('facebook', {
-			successRedirect : '/',
-			failureRedirect : '/login'
+			successRedirect: '/',
+			failureRedirect: '/login'
 		}));
 
-	app.use(function(req,res,next){
+	app.use(function (req, res, next) {
 		res.locals = ({
 			user: req.user
 		});

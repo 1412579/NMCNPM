@@ -72,7 +72,7 @@ var hbs = exphbs.create({ defaultLayout: 'main-user' ,
 			if(!this._sections) this._sections = {};
 			this._sections[name] = options.fn(this); 
 			return null;
-		} 
+		}
 	},
 });
 
@@ -83,6 +83,10 @@ require('./config/express')(app,hbs,express, session,morgan,cookieParser,bodyPar
 
 // routes ======================================================================
 require('./route/routes.js')(app, passport,pool); // load our routes and pass in our app and fully configured passport
+
+require('./app/controller/ImageController.js')(app) //load controller hỗ trợ up ảnh
+
+
 
 // launch ======================================================================
 app.listen(port);

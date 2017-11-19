@@ -34,204 +34,56 @@
 								</tr>
 							</thead>
 							<tbody>
+								{{#each users}}
 								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
+									<td>{{id}}</td>
+									<td>{{email}}</td>
+									<td>{{fullname}}</td>
 									<td class="center">
-										097989656565
+										{{phone}}
 									</td>
 									<td>
-										Người dùng
+										{{role_name}}
 									</td>
 									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
+										<input type="hidden" id="id" value="{{id}}">
+									{{#ifCond ...user.role_id '<=' role_id}}
+
+										{{#ifCond ...user.id '!==' id}}
+										<a href="javascript:void(0)" disabled class="btn btn-primary btn-sm btn-icon icon-left">
 											<i class="entypo-pencil"></i>
 											Sửa
 										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
+										<a href="javascript:void(0)" disabled class="btn btn-danger btn-sm btn-icon icon-left">
 											<i class="entypo-cancel"></i>
 											Cấm
 										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
+										{{/ifCond}}
+										{{#ifCond ...user.id '==' id}}
 										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
 											<i class="entypo-pencil"></i>
-											Sửa
+											Sửa							
 										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
+										<a href="javascript:void(0)" disabled class="btn btn-danger btn-sm btn-icon icon-left">
 											<i class="entypo-cancel"></i>
 											Cấm
 										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
+										{{/ifCond}}
+									{{/ifCond}}
 
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
+									{{#ifCond ...user.role_id '>' role_id}}
 										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
 											<i class="entypo-pencil"></i>
-											Sửa
+											Sửa							
 										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
+										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left banUser">
 											<i class="entypo-cancel"></i>
 											Cấm
 										</a>
+									{{/ifCond}}
 									</td>
 								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
-											<i class="entypo-cancel"></i>
-											Cấm
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
-											<i class="entypo-cancel"></i>
-											Cấm
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
-											<i class="entypo-cancel"></i>
-											Cấm
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
-											<i class="entypo-cancel"></i>
-											Cấm
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
-											<i class="entypo-cancel"></i>
-											Cấm
-										</a>
-									</td>
-								</tr>
-								<tr class="odd gradeX">
-
-									<td>112312</td>
-									<td>sample@email.com</td>
-									<td>Tang Liang</td>
-									<td class="center">
-										097989656565
-									</td>
-									<td>
-										Người dùng
-									</td>
-									<td class="center">
-										<a href="/admin/user/edit/{{id}}" class="btn btn-primary btn-sm btn-icon icon-left">
-											<i class="entypo-pencil"></i>
-											Sửa
-										</a>
-										<a href="javascript:void(0)" class="btn btn-danger btn-sm btn-icon icon-left deleteUser">
-											<i class="entypo-cancel"></i>
-											Cấm
-										</a>
-									</td>
-								</tr>
+								{{/each}}
 							</tbody>
 							<tfoot>
 								<tr>
@@ -257,33 +109,42 @@
 	</div>
 
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.deleteUser').click(function(){
-				if(window.confirm("Bạn chắc chắn muốn xoá?")){
-					var id =$(this).parent().parent().find('input#id').val();
-					var url ='/admin/user/delete';
-					var target = $(this).parent().parent();
-					$.ajax({
-		                url: url,
-		                type: 'POST',
-		                cache: false,
-		                data:{id:id},
-		                success: function (data){
-		                    if(data){
-		                        target.remove();
-		                    }
-		                    else alert('Ajax không thành công!');
-		                 }
-		            });
-		        }
-		        else return false;
-			});
-			$('div.alert').delay(5000).slideUp();
-		});	
-	</script>
+ {{#section 'scripts'}}
+<!-- Imported styles on this page -->
+
+<!-- Bottom scripts (common) -->
+<script src="/assets/admin/js/gsap/TweenMax.min.js"></script>
+<script src="/assets/admin/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="/assets/admin/js/bootstrap.js"></script>
+<script src="/assets/admin/js/resizeable.js"></script>
+<script src="/assets/admin/js/neon-api.js"></script>
+<script src="/assets/admin/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 
 
-		
+
+<!-- Imported scripts on this page -->
+<script src="/assets/admin/scripts/user.js"></script>
 
 
+
+<script src="/assets/admin/js/datatables/datatables.js"></script>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="/assets/admin/js/neon-custom.js"></script>
+
+<!-- Imported scripts on this page -->
+<script src="/assets/admin/js/bootstrap-switch.min.js"></script>
+
+<!-- Demo Settings -->
+<script src="/assets/admin/js/neon-demo.js"></script>
+
+
+
+
+<script>
+	$(document).ready(function () {
+		//bootstrap WYSIHTML5 - text editor
+		$('#table-1').DataTable();
+	});
+</script> 
+{{/section}}

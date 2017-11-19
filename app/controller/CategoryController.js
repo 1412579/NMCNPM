@@ -7,6 +7,7 @@ var Category = require('../model/category.js');
 var Catalog = require('../model/catalog.js');
 var moment = require('moment');
 var slug = require('slug');
+
 router.get('/add', (req, res) => {
     Catalog.getAll()
     .then(result => {
@@ -107,6 +108,34 @@ router.post('/edit/:id', (req,res)=>{
         res.redirect('/admin/category/list');
     })
     .catch(err => console.log(err));
+})
+
+router.post('/update-visible',(req,res) => {
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        Category.visible(req.body)
+        .then( result => {
+            console.log('Update Ajax Ẩn/Hiện thành công!');
+            res.end('Update Ajax Ẩn/Hiện thành công!');
+        })
+        .catch(err => {
+            console.log(err);
+            return res.end();
+        });
+    }
+})
+
+router.post('/delete',(req,res) => {
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        Category.delete(req.body.id)
+        .then( result => {
+            console.log('Xoá loại tin thành công!');
+            res.end('Xoá loại tin thành công!');
+        })
+        .catch(err => {
+            console.log(err);
+            return res.end();
+        });
+    }
 })
 
 module.exports = router;
