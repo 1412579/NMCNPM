@@ -48,4 +48,4 @@ gulp.task('image', function () {
 
 
 
-gulp.task('default', [ 'scripts','image']);
+gulp.task('default', [ 'scripts','image','css']);

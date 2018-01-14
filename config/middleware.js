@@ -43,7 +43,7 @@ var middleware = {
         if (req.isAuthenticated())
         {
             if (req.user.role_id == 1)
-                res.send("401 - Unauthorized: Access is denied due to invalid credentials");
+                return res.redirect('/admin/dashboard');
                 
         }
         return next();
@@ -54,7 +54,7 @@ var middleware = {
         if (req.isAuthenticated())
         {
             if (req.user.role_id != 4)
-                res.send("401 - Unauthorized: Access is denied due to invalid credentials");
+                return res.redirect('/admin/dashboard');
                 
         }
         return next();
@@ -65,7 +65,7 @@ var middleware = {
             if (req.isAuthenticated())
             {
                 if (req.user.role_id == 1 || req.user.role_id == 2)
-                    res.send("401 - Unauthorized: Access is denied due to invalid credentials");
+                    return res.redirect('/admin/dashboard');
                     
             }
             return next();

@@ -109,7 +109,7 @@ router.post('/edit/:id', function(req, res) {
             updated_at: getTimeNow
         };
         let flag = 0;
-        if(req.file.filename){
+        if(typeof req.file !== 'undefined'){
             //console.log('ahihi');
             articleInfo.thumbnail = req.file.filename;
             flag = 1;

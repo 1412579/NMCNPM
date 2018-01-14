@@ -52,7 +52,7 @@ var WelcomeController = {
 		let g_fourhot;
 		Catalog.getAllIndex()
 		.then(result => {
-			g_4highlight = result;
+			g_catalog = result;
 			return Article.getByCateSlug(req.params.category_slug);
 		})
 		.then(result => {
